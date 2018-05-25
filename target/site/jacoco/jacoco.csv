@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+microservice,com.telstra.codechallenge.constants,ServiceConstants,3,0,0,0,1,0,1,0,1,0
+microservice,com.telstra.codechallenge.users,UsersController,42,10,0,0,8,4,2,2,2,2
+microservice,com.telstra.codechallenge.users,User,0,12,0,0,0,5,0,4,0,4
+microservice,com.telstra.codechallenge.users,UserAccountsResponse,0,10,0,0,0,4,0,3,0,3
+microservice,com.telstra.codechallenge.users,UsersService,46,6,2,0,7,3,2,1,1,1
+microservice,com.telstra.codechallenge,MicroServiceMain,5,6,0,0,2,2,1,2,1,2
+microservice,com.telstra.codechallenge.repositories,RepositoryResponse,0,10,0,0,0,4,0,3,0,3
+microservice,com.telstra.codechallenge.repositories,RepositoryController,49,10,0,0,7,4,2,2,2,2
+microservice,com.telstra.codechallenge.repositories,ErrorResponse,12,14,0,0,5,6,2,4,2,4
+microservice,com.telstra.codechallenge.repositories,RepositoryService,90,10,2,0,14,4,4,2,3,2
+microservice,com.telstra.codechallenge.repositories,Item,7,38,0,0,3,17,2,11,2,11

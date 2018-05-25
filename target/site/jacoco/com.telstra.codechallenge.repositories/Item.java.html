@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Item.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">microservice</a> &gt; <a href="index.source.html" class="el_package">com.telstra.codechallenge.repositories</a> &gt; <span class="el_source">Item.java</span></div><h1>Item.java</h1><pre class="source lang-java linenums">package com.telstra.codechallenge.repositories;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Item {
+	@JsonProperty(&quot;watchers_count&quot;)
+	private Long watchersCount;
+	private String language;
+	@JsonProperty(&quot;html_url&quot;)
+	private String htmlUrl;
+	private String description;
+	private String name;
+	@JsonProperty(&quot;created_at&quot;)
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	private String createdAt;
+<span class="fc" id="L19">	public Item() {</span>
+<span class="fc" id="L20">	}</span>
+	public Long getWatchersCount() {
+<span class="fc" id="L22">		return watchersCount;</span>
+	}
+	public String getLanguage() {
+<span class="fc" id="L25">		return language;</span>
+	}
+	public String getHtmlUrl() {
+<span class="fc" id="L28">		return htmlUrl;</span>
+	}
+	public String getDescription() {
+<span class="fc" id="L31">		return description;</span>
+	}
+	public String getName() {
+<span class="fc" id="L34">		return name;</span>
+	}
+	public String getCreatedAt() {
+<span class="nc" id="L37">		return createdAt;</span>
+	}
+	public void setCreatedAt(String createdAt) {
+<span class="nc" id="L40">		this.createdAt = createdAt;</span>
+<span class="nc" id="L41">	}</span>
+	public void setWatchersCount(Long watchersCount) {
+<span class="fc" id="L43">		this.watchersCount = watchersCount;</span>
+<span class="fc" id="L44">	}</span>
+	public void setLanguage(String language) {
+<span class="fc" id="L46">		this.language = language;</span>
+<span class="fc" id="L47">	}</span>
+	public void setHtmlUrl(String htmlUrl) {
+<span class="fc" id="L49">		this.htmlUrl = htmlUrl;</span>
+<span class="fc" id="L50">	}</span>
+	public void setDescription(String description) {
+<span class="fc" id="L52">		this.description = description;</span>
+<span class="fc" id="L53">	}</span>
+	public void setName(String name) {
+<span class="fc" id="L55">		this.name = name;</span>
+<span class="fc" id="L56">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
