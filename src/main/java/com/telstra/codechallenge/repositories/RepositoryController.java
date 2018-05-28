@@ -1,7 +1,6 @@
 package com.telstra.codechallenge.repositories;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import com.telstra.codechallenge.constants.*;
+import com.telstra.codechallenge.constants.ServiceConstants;
+
 @RestController
 public class RepositoryController {
+	
+	public static Logger logger = Logger.getLogger(RepositoryController.class);
 
 	@Autowired
 	private RepositoryService repositoryService;
-
-	private static final Logger log = LoggerFactory.getLogger(RepositoryController.class);
 
 	public RepositoryController(RepositoryService repositoryService) {
 		this.repositoryService = repositoryService;
@@ -28,15 +28,24 @@ public class RepositoryController {
 	@HystrixCommand(commandProperties = {
 			@HystrixProperty(name = "execution.timeout.enabled", value = "false") }, fallbackMethod = "fallBackMethod")
 	@RequestMapping(path = "/repositories", method = RequestMethod.GET)
-	public ResponseEntity<?> repositories(@RequestParam(value = ServiceConstants.Q_PARAM, defaultValue = ServiceConstants.Q_VALUE) String q,
+	public ResponseEntity<?> repositories(
+			@RequestParam(value = ServiceConstants.Q_PARAM, defaultValue = ServiceConstants.Q_VALUE) String q,
 			@RequestParam(value = ServiceConstants.SORT_PARAM, defaultValue = ServiceConstants.SORT_VALUE) String sort,
 			@RequestParam(value = ServiceConstants.ORDER_PARAM, defaultValue = ServiceConstants.ORDER_DESC_VALUE) String order,
 			@RequestParam(value = ServiceConstants.LIMIT_PARAM) String limit) {
 		try {
-			return new ResponseEntity<>( repositoryService.getRepositories(q, sort, order, Integer.parseInt(limit)), HttpStatus.OK);
+			if (Integer.parseInt(limit) <= 0) {
+				logger.error("Not a positive integer");
+				ErrorResponse myResponse = new ErrorResponse("Error",
+						"Please provide a positive integer value as a limit");
+				return new ResponseEntity<>(myResponse, HttpStatus.BAD_REQUEST);
+			} else {
+				return new ResponseEntity<>(repositoryService.getRepositories(q, sort, order, Integer.parseInt(limit)),
+						HttpStatus.OK);
+			}
 		} catch (NumberFormatException e) {
-			log.error("NumberFormatException ocurred : " + e.getMessage());
-			ErrorResponse myResponse = new ErrorResponse("Error", "Please provide numbers as a limit");
+			logger.error("Not a numeric value");
+			ErrorResponse myResponse = new ErrorResponse("Error", "Please provide numeric value as a limit");
 			return new ResponseEntity<>(myResponse, HttpStatus.BAD_REQUEST);
 		}
 	}

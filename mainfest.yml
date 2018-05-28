@@ -1,6 +1,0 @@
----
-applications:
-- name: microservice-deploy-app-cloud
-  instances: 1
-  host: repositories-users
-  path: target/microservice-1.0.0-SNAPSHOT.jar
